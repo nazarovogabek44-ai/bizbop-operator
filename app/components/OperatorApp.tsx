@@ -12,8 +12,10 @@ import type { FormType } from "./forms/OperatorForms";
 import { BranchPicker } from "./BranchPicker";
 import { DashboardView } from "./DashboardView";
 import { FormByType } from "./forms/OperatorForms";
+import { LoginScreen } from "./LoginScreen";
 
 export function OperatorApp({ branches }: { branches: Branch[] }) {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [branch, setBranch] = useState<Branch | null>(null);
   const [activeForm, setActiveForm] = useState<FormType | null>(null);
   const [records, setRecords] = useState<LocalRecord[]>([]);
@@ -23,9 +25,16 @@ export function OperatorApp({ branches }: { branches: Branch[] }) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setOperatorId(localStorage.getItem("operator_id") || "");
-    setOperatorName(localStorage.getItem("operator_name") || "Operator");
-    setOperatorRole(localStorage.getItem("operator_role") || "operator");
+    const id = localStorage.getItem("operator_id") || "";
+    const name = localStorage.getItem("operator_name") || "";
+    const role = localStorage.getItem("operator_role") || "operator";
+
+    if (id && name) {
+      setOperatorId(id);
+      setOperatorName(name);
+      setOperatorRole(role);
+      setIsLoggedIn(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -37,6 +46,17 @@ export function OperatorApp({ branches }: { branches: Branch[] }) {
 
     setRecords(loadRecords(branch.id));
   }, [branch]);
+
+  function handleLogin() {
+    const id = localStorage.getItem("operator_id") || "";
+    const name = localStorage.getItem("operator_name") || "Operator";
+    const role = localStorage.getItem("operator_role") || "operator";
+
+    setOperatorId(id);
+    setOperatorName(name);
+    setOperatorRole(role);
+    setIsLoggedIn(true);
+  }
 
   async function uploadPhoto(file: File | null, folder: string) {
     if (!file || file.size === 0) return "";
@@ -197,7 +217,15 @@ export function OperatorApp({ branches }: { branches: Branch[] }) {
 
   function handleLogout() {
     localStorage.clear();
-    window.location.reload();
+    setIsLoggedIn(false);
+    setBranch(null);
+    setOperatorId("");
+    setOperatorName("Operator");
+    setOperatorRole("operator");
+  }
+
+  if (!isLoggedIn) {
+    return <LoginScreen onLogin={handleLogin} />;
   }
 
   if (!branch) {
