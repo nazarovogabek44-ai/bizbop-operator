@@ -17,9 +17,19 @@ export function FormByType({
 }: FormByTypeProps) {
   if (type === "work") {
     return (
-      <FormShell title="➕ Ish qo‘shish" branchName={branchName} onBack={onBack} onSubmit={onSubmit}>
+      <FormShell
+        title="➕ Ish qo‘shish"
+        branchName={branchName}
+        onBack={onBack}
+        onSubmit={onSubmit}
+      >
         <Field label="Ish nomi">
-          <input name="note" required placeholder="Masalan: Polka tekshirildi" className={inputClass} />
+          <input
+            name="note"
+            required
+            placeholder="Masalan: Polka tekshirildi"
+            className={inputClass}
+          />
         </Field>
       </FormShell>
     );
@@ -27,29 +37,65 @@ export function FormByType({
 
   if (type === "prixod") {
     return (
-      <FormShell title="📦 Prixod" branchName={branchName} onBack={onBack} onSubmit={onSubmit}>
+      <FormShell
+        title="📦 Prixod"
+        branchName={branchName}
+        onBack={onBack}
+        onSubmit={onSubmit}
+      >
         <Field label="Postavshik">
-          <input name="supplier" required placeholder="Postavshik nomi" className={inputClass} />
+          <input
+            name="supplier"
+            required
+            placeholder="Postavshik nomi"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="Nakladnoy №">
-          <input name="document_number" required placeholder="Nakladnoy raqami" className={inputClass} />
+          <input
+            name="document_number"
+            required
+            placeholder="Nakladnoy raqami"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="Summa">
-          <input name="amount" type="number" placeholder="Summa" className={inputClass} />
+          <input
+            name="amount"
+            type="number"
+            inputMode="numeric"
+            placeholder="Summa"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="SKU soni">
-          <input name="sku_count" type="number" placeholder="SKU soni" className={inputClass} />
+          <input
+            name="sku_count"
+            type="number"
+            inputMode="numeric"
+            placeholder="SKU soni"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="Nakladnoy rasmi">
-          <input name="photo" type="file" accept="image/*" className={fileClass} />
+          <input
+            name="photo"
+            type="file"
+            accept="image/*"
+            className={fileClass}
+          />
         </Field>
 
         <Field label="Izoh">
-          <textarea name="comment" placeholder="Izoh" className={areaClass} />
+          <textarea
+            name="comment"
+            placeholder="Izoh"
+            className={areaClass}
+          />
         </Field>
       </FormShell>
     );
@@ -57,44 +103,95 @@ export function FormByType({
 
   if (type === "rasxod") {
     return (
-      <FormShell title="📤 Rasxod" branchName={branchName} onBack={onBack} onSubmit={onSubmit}>
+      <FormShell
+        title="📤 Rasxod"
+        branchName={branchName}
+        onBack={onBack}
+        onSubmit={onSubmit}
+      >
         <Field label="Rasxod turi">
-          <select name="rasxod_type" required className={inputClass} defaultValue="">
-            <option value="" disabled>Tanlang</option>
+          <select
+            name="rasxod_type"
+            required
+            className={inputClass}
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Tanlang
+            </option>
             <option value="Filialga yuborish">Filialga yuborish</option>
-            <option value="Markaziy skladga qaytarish">Markaziy skladga qaytarish</option>
+            <option value="Markaziy skladga qaytarish">
+              Markaziy skladga qaytarish
+            </option>
             <option value="Boshqa">Boshqa</option>
           </select>
         </Field>
 
         <Field label="Qabul qiluvchi">
-          <input name="receiver" required placeholder="Qabul qiluvchi" className={inputClass} />
+          <input
+            name="receiver"
+            required
+            placeholder="Qabul qiluvchi"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="Hujjat №">
-          <input name="document_number" required placeholder="Hujjat raqami" className={inputClass} />
+          <input
+            name="document_number"
+            required
+            placeholder="Hujjat raqami"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="Summa">
-          <input name="amount" type="number" placeholder="Summa" className={inputClass} />
+          <input
+            name="amount"
+            type="number"
+            inputMode="numeric"
+            placeholder="Summa"
+            className={inputClass}
+          />
         </Field>
 
         <Field label="Rasm">
-          <input name="photo" type="file" accept="image/*" className={fileClass} />
+          <input
+            name="photo"
+            type="file"
+            accept="image/*"
+            className={fileClass}
+          />
         </Field>
 
         <Field label="Izoh">
-          <textarea name="comment" placeholder="Izoh" className={areaClass} />
+          <textarea
+            name="comment"
+            placeholder="Izoh"
+            className={areaClass}
+          />
         </Field>
       </FormShell>
     );
   }
 
   return (
-    <FormShell title="📸 Foto otchyot" branchName={branchName} onBack={onBack} onSubmit={onSubmit}>
+    <FormShell
+      title="📸 Foto otchyot"
+      branchName={branchName}
+      onBack={onBack}
+      onSubmit={onSubmit}
+    >
       <Field label="Foto turi">
-        <select name="photo_type" required className={inputClass} defaultValue="">
-          <option value="" disabled>Tanlang</option>
+        <select
+          name="photo_type"
+          required
+          className={inputClass}
+          defaultValue=""
+        >
+          <option value="" disabled>
+            Tanlang
+          </option>
           <option value="Narx foto">Narx foto</option>
           <option value="Polka foto">Polka foto</option>
           <option value="Promo foto">Promo foto</option>
@@ -103,11 +200,21 @@ export function FormByType({
       </Field>
 
       <Field label="Foto">
-        <input name="photo" required type="file" accept="image/*" className={fileClass} />
+        <input
+          name="photo"
+          required
+          type="file"
+          accept="image/*"
+          className={fileClass}
+        />
       </Field>
 
       <Field label="Izoh">
-        <textarea name="comment" placeholder="Izoh" className={areaClass} />
+        <textarea
+          name="comment"
+          placeholder="Izoh"
+          className={areaClass}
+        />
       </Field>
     </FormShell>
   );
@@ -126,6 +233,12 @@ function FormShell({
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   children: ReactNode;
 }) {
+  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+    onSubmit(e);
+  }
+
   return (
     <div>
       <button
@@ -137,7 +250,7 @@ function FormShell({
       </button>
 
       <form
-        onSubmit={onSubmit}
+        onSubmit={handleFormSubmit}
         className="rounded-3xl border border-[#21463D]/60 bg-[#102824] p-5"
       >
         <h1 className="text-2xl font-bold">{title}</h1>
